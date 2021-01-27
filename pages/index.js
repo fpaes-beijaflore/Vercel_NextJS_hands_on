@@ -1,16 +1,15 @@
-import styled from "styled-components";
-import db from "../db.json";
-import Widget from "../src/Components/Widget";
-import Footer from "../src/Components/Footer";
-import GitHubCorner from "../src/Components/GitHubCorner";
-import QuizBackground from "../src/Components/QuizBackground";
-
-/* const BackgroundImage = styled.div`
-  background-image: url(${db.bg});
-  flex: 1;
-  background-size: cover;
-  background-position: center;
-`; */
+import { useState } from 'react';
+import { useRouter } from 'next/router';
+import Head from 'next/head';
+import styled from 'styled-components';
+import db from '../db.json';
+import Widget from '../src/Components/Widget';
+import Footer from '../src/Components/Footer';
+import GitHubCorner from '../src/Components/GitHubCorner';
+import QuizBackground from '../src/Components/QuizBackground';
+import QuizLogo from '../src/Components/QuizLogo';
+import Input from '../src/Components/Input';
+import Button from '../src/Components/Button';
 
 const QuizContainer = styled.div`
   width: 100%;
@@ -24,15 +23,40 @@ const QuizContainer = styled.div`
 `;
 
 export default function Home() {
+  const router = useRouter();
+  const [name, setName] = useState('');
   return (
     <QuizBackground backgroundImage={db.bg}>
+      <Head>
+        <title>Star Wars Quiz</title>
+      </Head>
       <QuizContainer>
+        <QuizLogo />
         <Widget>
           <Widget.Header>
             <h1>{db.title}</h1>
           </Widget.Header>
           <Widget.Content>
             <p>{db.description}</p>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                router.push(`/quiz?name=${name}`);
+              }}
+            >
+              <Input
+                placeholder="Me diga o seu nome"
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+                value={name}
+                name="nome"
+              />
+
+              <Button type="submit" disabled={name.length < 3}>
+                Jogar
+              </Button>
+            </form>
           </Widget.Content>
         </Widget>
 
