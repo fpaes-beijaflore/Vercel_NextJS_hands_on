@@ -4,28 +4,99 @@
   "description": "Quiz sobre curiosidades do universo de Star Wars",
   "questions": [
     {
-      "image": "",
-      "title": "Questão 01",
-      "description": "Descrição da questão #01",
+      "image": "https://www.thesun.co.uk/wp-content/uploads/2017/11/nintchdbpict000364213514.jpg?strip=all&w=960",
+      "title": "Que tipo de veículo a Rey usa como casa ?",
+      "description": "",
+      "answer": 3,
+      "alternatives": ["AT-ST", "Star Destroyer", "Mon Calimari", "AT-AT"]
+    },
+    {
+      "image": "http://2.bp.blogspot.com/-_hnunHUkumk/VjQT8Cg_vHI/AAAAAAAACow/G_JGKWM8x5Q/s1600/429498_v1.jpg",
+      "title": "De acordo com o Mestre Yoda, quantos Sith sempre estão por ai ?",
+      "description": "",
+      "answer": 2,
+      "alternatives": ["4", "3", "2", "1"]
+    },
+    {
+      "image": "https://media3.giphy.com/media/ZX6NHzA9Fcddm/giphy.gif",
+      "title": "O que aconteceu com Anakin Skywalker durante sua batalho com Conde Dookan ?",
+      "description": "",
       "answer": 1,
       "alternatives": [
-        "Alternativa A",
-        "Alternativa B",
-        "Alternativa C",
-        "Alternativa D"
+        "Ele perdeu a perna esquerda",
+        "Ele perdeu o braço direito",
+        "Ele perdeu a perna direita",
+        "Ele perdeu o braço esquerdo"
       ]
     },
     {
-      "image": "",
-      "title": "Questão 02",
-      "description": "Descrição da questão #02",
+      "image": "https://media1.tenor.com/images/5205c9646d99542257b2d8f5add80c19/tenor.gif?itemid=19246551",
+      "title": "Quem matou o Jabba ?",
+      "description": "",
+      "answer": 3,
+      "alternatives": ["Han Solo", "C-3PO", "Luke Skywalker", "Princesa Leia"]
+    },
+    {
+      "image": "http://images6.fanpop.com/image/photos/38700000/padme-amidala-padme-naberrie-amidala-skywalker-38719715-245-150.gif",
+      "title": "Quais foram as últimas palavras de Padmé ?",
+      "description": "",
+      "answer": 2,
+      "alternatives": [
+        "Encontre-o e destrua-o",
+        "Tenha certeza que ele nunca descubra",
+        "Eu sei que ainda há alguma bondade nele",
+        "Você estava certo, Obi-Wan"
+      ]
+    },
+    {
+      "image": "https://media1.tenor.com/images/8dc983f8c8efe21569c865237ea10d39/tenor.gif?itemid=4813434",
+      "title": "Como Obi-Wan ficou conhecido em Tatooine ?",
+      "description": "",
+      "answer": 1,
+      "alternatives": ["Ken", "Ben", "Obi", "Wan"]
+    },
+    {
+      "image": "https://media2.giphy.com/media/xTiIzjS5VKWJzNGIUw/200.gif",
+      "title": "O que o R2-D2 percebe sobre o C-3PO quando eles se conhecem ?",
+      "description": "",
+      "answer": 0,
+      "alternatives": [
+        "Que o C-3PO estava pelado",
+        "Que o C-3PO não estava finalizado",
+        "Que o C-3PO era gordo",
+        "Que o C-3PO era assimétrico"
+      ]
+    },
+    {
+      "image": "https://64.media.tumblr.com/42b6189e686efe5f0b9e59eb63519374/0789de78a3c0ff9d-47/s400x600/751559e5d5793ac9cb38126053c5e82b24492a67.gifv",
+      "title": "Do que o Han Solo chama os Kanjiklub ?",
+      "description": "",
+      "answer": 0,
+      "alternatives": [
+        "Pequenas aberrações",
+        "Catadores",
+        "Stalkers",
+        "Mentirosos"
+      ]
+    },
+    {
+      "image": "https://i.pinimg.com/originals/b0/91/5d/b0915d99130d9271a6c262066208ccc4.gif",
+      "title": "O que a Princesa Leia diz pro Han Solo quando a Millenium Falcon não quer pegar no Hangar Sete ?",
+      "description": "",
       "answer": 1,
       "alternatives": [
-        "Alternativa A",
-        "Alternativa B",
-        "Alternativa C",
-        "Alternativa D"
+        "Essa nave é um desastre",
+        "Ajudaria se eu saísse e empurrase ?",
+        "Troca esse pedaço de lixo logo",
+        "Qualquer dia desses vai"
       ]
+    },
+    {
+      "image": "https://media2.giphy.com/media/3ofSBidO0LGQL1gS1W/200.gif",
+      "title": "Que estranha criatura Luke Skywalker encontrou em Dagobah ?",
+      "description": "",
+      "answer": 0,
+      "alternatives": ["Yoda", "Oppo Rancisis", "Yaddle", "Yorba"]
     }
   ],
   "external": [],
