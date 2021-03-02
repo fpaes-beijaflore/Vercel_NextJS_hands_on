@@ -133,7 +133,7 @@ export default function Home({ db }) {
           </Widget.Content>
         </Widget>
       </QuizContainer>
-      <GitHubCorner projectUrl="https://github.com/fpaes-beijaflore/NextJS_hands_on" />
+      <GitHubCorner projectUrl="https://github.com/fpaes-beijaflore/Vercel_NextJS_hands_on" />
     </QuizBackground>
   );
 }
