@@ -10,9 +10,8 @@ import QuizContainer from '../src/Components/QuizContainer';
 import Input from '../src/Components/Input';
 import Button from '../src/Components/Button';
 import Link from '../src/Components/Link';
-import db from '../db.json';
 
-export default function Home() {
+export default function Home({ db }) {
   const router = useRouter();
   const [name, setName] = useState('');
 
@@ -137,4 +136,23 @@ export default function Home() {
       <GitHubCorner projectUrl="https://github.com/fpaes-beijaflore/NextJS_hands_on" />
     </QuizBackground>
   );
+}
+
+export async function getStaticProps() {
+  const db = await fetch('https://star-wars-quiz-eta.vercel.app/api/db')
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+
+      throw new Error('Erro ao carregar os dados!');
+    })
+    .then((resJson) => {
+      return resJson;
+    })
+    .catch((err) => err);
+
+  return {
+    props: { db },
+  };
 }

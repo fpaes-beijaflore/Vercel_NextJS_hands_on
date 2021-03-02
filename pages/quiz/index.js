@@ -9,14 +9,14 @@ import QuizContainer from '../../src/Components/QuizContainer';
 import AlternativesForm from '../../src/Components/AlternativesForm';
 import Button from '../../src/Components/Button';
 import BackLinkArrow from '../../src/Components/BackLinkArrow';
-import db from '../../db.json';
 import loadingAnimation from '../../src/screens/Quiz/animations/3010-bb8.json';
+import loadingExternal from '../../src/screens/Quiz/animations/loading.json';
 
-function LoadingWidget() {
+function LoadingWidget({ isExternal }) {
   const defaultOptions = {
     loop: true,
     autoplay: true,
-    animationData: loadingAnimation,
+    animationData: isExternal ? loadingExternal : loadingAnimation,
     rendererSettings: {
       preserveAspectRatio: 'xMidYMid slice',
     },
@@ -141,7 +141,7 @@ const screenStates = {
   RESULT: 'RESULT',
 };
 
-export default function Quiz({ isExternal, externalDB }) {
+export default function Quiz({ isExternal, externalDB, db }) {
   const [questionIndex, setQuestionIndex] = useState(0);
   const [screenState, setScreenState] = useState(screenStates.LOADING);
   const [results, setResults] = useState([]);
@@ -203,7 +203,9 @@ export default function Quiz({ isExternal, externalDB }) {
             addResult={addResult}
           />
         )}
-        {screenState === screenStates.LOADING && <LoadingWidget />}
+        {screenState === screenStates.LOADING && (
+          <LoadingWidget isExternal={isExternal} />
+        )}
         {screenState === screenStates.RESULT && (
           <ResultWidget results={results} />
         )}
@@ -211,4 +213,23 @@ export default function Quiz({ isExternal, externalDB }) {
       <GitHubCorner projectUrl="https://github.com/fpaes-beijaflore/NextJS_hands_on" />
     </QuizBackground>
   );
+}
+
+export async function getServerSideProps() {
+  const db = await fetch('https://star-wars-quiz-eta.vercel.app/api/db')
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+
+      throw new Error('Erro ao carregar os dados!');
+    })
+    .then((resJson) => {
+      return resJson;
+    })
+    .catch((err) => err);
+
+  return {
+    props: { db },
+  };
 }
