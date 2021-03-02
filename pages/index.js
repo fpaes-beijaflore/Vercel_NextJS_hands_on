@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import db from '../db.json';
+import { motion } from 'framer-motion';
 import Widget from '../src/Components/Widget';
 import GitHubCorner from '../src/Components/GitHubCorner';
 import QuizBackground from '../src/Components/QuizBackground';
@@ -9,10 +9,13 @@ import QuizLogo from '../src/Components/QuizLogo';
 import QuizContainer from '../src/Components/QuizContainer';
 import Input from '../src/Components/Input';
 import Button from '../src/Components/Button';
+import Link from '../src/Components/Link';
+import db from '../db.json';
 
 export default function Home() {
   const router = useRouter();
   const [name, setName] = useState('');
+
   return (
     <QuizBackground backgroundImage={db.bg}>
       <Head>
@@ -20,11 +23,43 @@ export default function Home() {
       </Head>
       <QuizContainer>
         <QuizLogo />
-        <Widget>
+        <Widget
+          as={motion.section}
+          variants={{
+            hidden: { y: '100%', opacity: 1, scale: 0 },
+            show: {
+              y: '0',
+              opacity: 1,
+              scale: 1,
+              transition: {
+                delay: 0,
+                duration: 0.3,
+              },
+            },
+          }}
+          initial="hidden"
+          animate="show"
+        >
           <Widget.Header>
             <h1>{db.title}</h1>
           </Widget.Header>
-          <Widget.Content>
+          <Widget.Content
+            as={motion.div}
+            variants={{
+              hidden: { y: '100%', opacity: 1, scale: 0 },
+              show: {
+                y: '0',
+                opacity: 1,
+                scale: 1,
+                transition: {
+                  delay: 0.3,
+                  duration: 0.3,
+                },
+              },
+            }}
+            initial="hidden"
+            animate="show"
+          >
             <p>{db.description}</p>
             <form
               onSubmit={(e) => {
@@ -48,17 +83,54 @@ export default function Home() {
           </Widget.Content>
         </Widget>
 
-        <Widget>
+        <Widget
+          as={motion.section}
+          variants={{
+            hidden: { y: '100%', opacity: 1, scale: 0 },
+            show: {
+              y: '0',
+              opacity: 1,
+              scale: 1,
+              transition: {
+                delay: 0.6,
+                duration: 0.3,
+              },
+            },
+          }}
+          initial="hidden"
+          animate="show"
+        >
           <Widget.Header>
             <h1>Quizes da Galera</h1>
           </Widget.Header>
-          <Widget.Content>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione,
-              distinctio molestiae. Aliquam nemo saepe nihil doloremque
-              excepturi facere architecto dolorem ipsa officiis itaque corporis,
-              fugit enim esse totam sed ea.
-            </p>
+          <Widget.Content
+            as={motion.div}
+            variants={{
+              hidden: { y: '100%', opacity: 1, scale: 0 },
+              show: {
+                y: '0',
+                opacity: 1,
+                scale: 1,
+                transition: {
+                  delay: 0.9,
+                  duration: 0.3,
+                },
+              },
+            }}
+            initial="hidden"
+            animate="show"
+          >
+            <ul>
+              {db.external.map((quizExterno) => {
+                return (
+                  <li key={`External_${quizExterno.name}`}>
+                    <Widget.Topic as={Link} href={`/quiz/${quizExterno.url}`}>
+                      {quizExterno.name}
+                    </Widget.Topic>
+                  </li>
+                );
+              })}
+            </ul>
           </Widget.Content>
         </Widget>
       </QuizContainer>

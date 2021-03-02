@@ -99,14 +99,29 @@
       "alternatives": ["Yoda", "Oppo Rancisis", "Yaddle", "Yorba"]
     }
   ],
-  "external": [],
+  "external": [
+    {
+      "url": "quiz-cavaleiro-zodiaco.vercel.app/",
+      "name": "Cavaleiros do Zodíaco"
+    },
+    { "url": "reactquiz.vercel.app/", "name": "React" },
+    {
+      "url": "harry-potter-quiz.brunogerbasi.vercel.app/",
+      "name": "Harry Potter"
+    },
+    { "url": "naruto-quiz.llofyy.vercel.app/", "name": "Naruto" },
+    {
+      "url": "lotr-quiz.filipe1309.vercel.app/",
+      "name": "O Senhor dos Anéis"
+    }
+  ],
   "theme": {
     "colors": {
-      "primary": "#4CAF50",
-      "secondary": "#FF9800",
-      "mainBg": "#1C1814",
-      "contrastText": "#FFFFFF",
-      "wrong": "#FF5722",
+      "primary": "#1C1814",
+      "secondary": "#4E0000",
+      "mainBg": "#020004",
+      "contrastText": "#DDDEDA",
+      "wrong": "#9E0000",
       "success": "#4CAF50"
     },
     "borderRadius": "4px"

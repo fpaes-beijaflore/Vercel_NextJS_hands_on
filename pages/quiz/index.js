@@ -1,19 +1,34 @@
 import { useState, useEffect } from 'react';
-import db from '../db.json';
-import Widget from '../src/Components/Widget';
-import GitHubCorner from '../src/Components/GitHubCorner';
-import QuizBackground from '../src/Components/QuizBackground';
-import QuizLogo from '../src/Components/QuizLogo';
-import QuizContainer from '../src/Components/QuizContainer';
-import AlternativesForm from '../src/Components/AlternativesForm';
-import Button from '../src/Components/Button';
+import { motion } from 'framer-motion';
+import Lottie from 'react-lottie';
+import Widget from '../../src/Components/Widget';
+import GitHubCorner from '../../src/Components/GitHubCorner';
+import QuizBackground from '../../src/Components/QuizBackground';
+import QuizLogo from '../../src/Components/QuizLogo';
+import QuizContainer from '../../src/Components/QuizContainer';
+import AlternativesForm from '../../src/Components/AlternativesForm';
+import Button from '../../src/Components/Button';
+import BackLinkArrow from '../../src/Components/BackLinkArrow';
+import db from '../../db.json';
+import loadingAnimation from '../../src/screens/Quiz/animations/3010-bb8.json';
 
 function LoadingWidget() {
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: loadingAnimation,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice',
+    },
+  };
+
   return (
     <Widget>
       <Widget.Header>Carregando...</Widget.Header>
 
-      <Widget.Content>[Desafio do loading]</Widget.Content>
+      <Widget.Content>
+        <Lottie options={defaultOptions} height={250} width={250} />
+      </Widget.Content>
     </Widget>
   );
 }
@@ -59,6 +74,7 @@ function QuestionWidget({
   return (
     <Widget>
       <Widget.Header>
+        <BackLinkArrow href="/" />
         <h3>
           Pergunta {questionIndex + 1} de {totalQuestions}
         </h3>
@@ -125,12 +141,16 @@ const screenStates = {
   RESULT: 'RESULT',
 };
 
-export default function Quiz() {
+export default function Quiz({ isExternal, externalDB }) {
   const [questionIndex, setQuestionIndex] = useState(0);
   const [screenState, setScreenState] = useState(screenStates.LOADING);
   const [results, setResults] = useState([]);
-  const question = db.questions[questionIndex];
-  const totalQuestions = db.questions.length;
+  const question = isExternal
+    ? externalDB.questions[questionIndex]
+    : db.questions[questionIndex];
+  const totalQuestions = isExternal
+    ? externalDB.questions.length
+    : db.questions.length;
 
   function addResult(result) {
     setResults([...results, result]);
@@ -139,7 +159,7 @@ export default function Quiz() {
   useEffect(() => {
     setTimeout(() => {
       setScreenState(screenStates.QUIZ);
-    }, 1 * 1000);
+    }, 6 * 1000);
   }, []);
 
   function handleSubmitQuiz() {
@@ -152,12 +172,30 @@ export default function Quiz() {
   }
 
   return (
-    <QuizBackground backgroundImage={db.bg}>
-      <QuizContainer>
-        <QuizLogo />
+    <QuizBackground backgroundImage={isExternal ? externalDB.bg : db.bg}>
+      <QuizContainer
+        as={motion.section}
+        variants={{
+          hidden: { y: '100%', opacity: 1, scale: 0 },
+          show: {
+            y: '0',
+            opacity: 1,
+            scale: 1,
+            transition: {
+              delay: 0,
+              duration: 0.3,
+            },
+          },
+        }}
+        initial="hidden"
+        animate="show"
+      >
+        {!isExternal && <QuizLogo />}
 
         {screenState === screenStates.QUIZ && (
           <QuestionWidget
+            initial="hidden"
+            animate="show"
             question={question}
             totalQuestions={totalQuestions}
             questionIndex={questionIndex}
